@@ -4,19 +4,6 @@ from pytldr.nlp import Tokenizer
 tokenizer = Tokenizer('english')
 summarizer = TextRankSummarizer(tokenizer)
 
-# If you don't specify a tokenizer when intiializing a summarizer then the
-# English tokenizer will be used by default
-summarizer = TextRankSummarizer()  # English tokenizer used
-
-# This object creates a summary using the summarize method:
-# e.g. summarizer.summarize(text, length=5, weighting='frequency', norm=None)
-
-# The length parameter specifies the length of the summary, either as a
-# number of sentences, or a percentage of the original text
-
-# The summarizer can take as input...
-# 1. A string:
-
 txt = """
     (Reuters) - Talks between Greece and euro zone finance ministers over the country's debt crisis broke down on Monday when Athens rejected a proposal to request a six-month extension of its international bailout package as "unacceptable".
     The unexpectedly rapid collapse raised doubts about Greece's future in the single currency area after a new leftist-led government vowed to scrap the 240 billion euro ($272.4 billion) bailout, reverse austerity policies and end cooperation with EU/IMF inspectors.
