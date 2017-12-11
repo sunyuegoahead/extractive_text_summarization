@@ -1,5 +1,9 @@
 from pytldr.summarize import TextRankSummarizer
 from pytldr.nlp import Tokenizer
+import json
+
+with open('data/reviews_Clothing_Shoes_and_Jewelry_5_longreview.json', 'r') as f:
+    data = json.load(f)
 
 tokenizer = Tokenizer('english')
 summarizer = TextRankSummarizer(tokenizer)
@@ -39,5 +43,13 @@ txt = """
     Euro zone member Cyprus was forced to close its banks for two weeks and introduce capital controls during a 2013 crisis. Such controls would need to be imposed when banks are closed. Greek banks are closed next Monday for a holiday.
     (Additional reporting by Yann Le Guernigou, Michael Nienaber, Andrew Callus, Jan Strupczewski, Alastair Macdonald, Adrian Croft, Foo Yun Chee, Robin Emmott, Tom Koerkemeier, Julia Fioretti and Francesca Landini; Writing by Jeremy Gaunt, Paul Taylor and Alastair Macdonald; Editing by Paul Taylor, Giles Elgood and Eric Walsh)
     """
+summary_all = []
+for thisdata in data:
+    summary = summarizer.summarize(thisdata['reviewText'], length=1)
+    summary_all.append(summary)
 
-summary = summarizer.summarize(txt, length=1)
+
+thefile = open('evaluation/test-summarization/system/video_system2.txt', 'w')
+for item in summary_all:
+    thefile.write("%s\n" % item[0])
+thefile.close()

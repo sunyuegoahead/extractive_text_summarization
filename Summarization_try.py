@@ -1,9 +1,10 @@
 from pytldr.summarize.lsa import LsaSummarizer, LsaOzsoy, LsaSteinberger
+from pytldr.nlp import Tokenizer
 import json
 import numpy as np
 #a = np.array([1, 2, 3])
 #print(a)
-with open('reviews_Amazon_Instant_Video_5.rev.train.json', 'r') as f:
+with open('data/reviews_Clothing_Shoes_and_Jewelry_5_longreview.json', 'r') as f:
     data = json.load(f)
 
 
@@ -58,3 +59,11 @@ for thisdata in data:
         thisdata['reviewText'], topics = 1, length = 1, binary_matrix = False, topic_sigma_threshold = 0
     )
     summary_all.append(summary)
+
+
+thefile = open('evaluation/test-summarization/system/video_system1.txt', 'w')
+for item in summary_all:
+    print(item[0])
+    thefile.write("%s\n" % item[0])
+thefile.close()
+
